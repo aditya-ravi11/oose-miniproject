@@ -1,0 +1,26 @@
+repos:
+  - repo: https://github.com/psf/black
+    rev: 24.4.2
+    hooks:
+      - id: black
+        language_version: python3
+        additional_dependencies: [black==24.4.2]
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        additional_dependencies: [isort==5.13.2]
+  - repo: local
+    hooks:
+      - id: eslint
+        name: eslint
+        entry: npm run lint -- --max-warnings=0
+        language: system
+        pass_filenames: false
+        types: [javascript, jsx, ts, tsx]
+      - id: prettier
+        name: prettier
+        entry: npm run format
+        language: system
+        pass_filenames: false
+        types_or: [javascript, jsx, ts, tsx, json, css, scss, md]

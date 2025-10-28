@@ -1,0 +1,39 @@
+﻿version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    env_file:
+      - .env.example
+    volumes:
+      - ./backend:/code
+      - ./uploads:/uploads
+      - ./data:/code/data
+    working_dir: /code
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    command: npm run dev -- --host 0.0.0.0 --port 5173
+    env_file:
+      - .env.example
+    volumes:
+      - ./frontend:/code
+    working_dir: /code
+    depends_on:
+      - backend
+    ports:
+      - "5173:5173"
+
+  mailhog:
+    image: mailhog/mailhog
+    restart: unless-stopped
+    ports:
+      - "8025:8025"
+      - "1025:1025"
