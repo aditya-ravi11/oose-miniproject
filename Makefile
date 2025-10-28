@@ -7,7 +7,7 @@ down:
 	docker compose down
 
 seed:
-	python backend/app/db/seed.py
+	cd backend && python -m app.scripts.seed
 
 test:
 	cd backend && pytest

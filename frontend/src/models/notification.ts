@@ -1,7 +1,6 @@
 export type Notification = {
-  id?: string;
-  _id?: string;
-  user_id: string;
+  id: number;
+  user_id: number;
   channel: 'email' | 'sms' | 'push' | 'inapp';
   title: string;
   body: string;

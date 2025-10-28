@@ -28,8 +28,8 @@ export type RequestStatus =
   | 'failed';
 
 export type PickupRequest = {
-  id: string;
-  user_id: string;
+  id: number;
+  user_id: number;
   category: 'organic' | 'recyclable' | 'hazardous' | 'e-waste' | 'bulk' | 'other';
   is_special: boolean;
   description: string;
